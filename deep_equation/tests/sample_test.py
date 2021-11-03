@@ -15,7 +15,7 @@ class TestRandomModel(unittest.TestCase):
         self.input_imgs_a = [
             self.digit_a, self.digit_a, self.digit_b, self.digit_b, self.digit_a,self.digit_c,self.digit_a, self.digit_c]
         self.input_imgs_b = [
-            self.digit_b, self.digit_b, self.digit_a, self.digit_b, self.digit_a,self.digit_a,self.digit_c, self.digit_b]
+            self.digit_b, self.digit_b, self.digit_a, self.digit_a, self.digit_a,self.digit_a,self.digit_c, self.digit_b]
         self.operators = ['+', '-', '*', '/', '*',"-","/","*"]
 
     def test_random_predictor(self):
@@ -46,7 +46,6 @@ class TestRandomModel(unittest.TestCase):
             operators=self.operators, 
             device='cpu',
         )
-
 
         self.validate_output(output)
 
