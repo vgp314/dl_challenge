@@ -1,0 +1,7 @@
+---
+MODELS:
+ BEST_MNIST_MODEL: src/deep_equation/models/digit_recognition2.pth
+ BEST_CALCULATOR_MODEL: src/deep_equation/models/calculator_digit_recognition4.pth
+
+MAPPING:
+ MAPPING_DIVISION_NUMBER: src/deep_equation/models/mapping_division.pkl

@@ -1,19 +1,22 @@
 import unittest
 from PIL import Image
+from deep_equation import model
 from deep_equation import predictor
-
+import numpy as np
 
 class TestRandomModel(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.digit_a = Image.open('resources/digit_a.png')
         self.digit_b = Image.open('resources/digit_b.png')
+        self.digit_c = Image.open('resources/digit_c.png')
+
 
         self.input_imgs_a = [
-            self.digit_a, self.digit_a, self.digit_b, self.digit_b, self.digit_a]
+            self.digit_a, self.digit_a, self.digit_b, self.digit_b, self.digit_a,self.digit_c,self.digit_a, self.digit_c]
         self.input_imgs_b = [
-            self.digit_b, self.digit_b, self.digit_a, self.digit_b, self.digit_a]
-        self.operators = ['+', '-', '*', '/', '*']
+            self.digit_b, self.digit_b, self.digit_a, self.digit_b, self.digit_a,self.digit_a,self.digit_c, self.digit_b]
+        self.operators = ['+', '-', '*', '/', '*',"-","/","*"]
 
     def test_random_predictor(self):
         """
@@ -44,6 +47,7 @@ class TestRandomModel(unittest.TestCase):
             device='cpu',
         )
 
+
         self.validate_output(output)
 
     def validate_output(self, output):
@@ -61,5 +65,6 @@ class TestRandomModel(unittest.TestCase):
         
         # Ensure that the output range is approximately correct
         for out in output:
-            self.assertGreaterEqual(out, -10)
-            self.assertLessEqual(out, 100)
+            if not np.isnan(out):
+                self.assertGreaterEqual(out, -10)
+                self.assertLessEqual(out, 100)
